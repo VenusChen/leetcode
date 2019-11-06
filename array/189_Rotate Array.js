@@ -1,4 +1,5 @@
 /**
+ * Method 1 - 需要额外空间
  * Desc:
  * Given an array, rotate the array to the right by k steps, where k is non-negative.
  * Hint:
@@ -29,13 +30,43 @@ var rotate = function(nums, k) {
     return nums;
 };
 
+
+/**
+ * Method 2 - 全部翻转
+ * Desc:
+ * Given an array, rotate the array to the right by k steps, where k is non-negative.
+ * Hint:
+ * 1. 翻转整个数组
+ * 2. 翻转前k个元素
+ * 3. 翻转剩余元素
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+let reverse = (nums, lp, rp)=> {
+    let tmp;
+    while (lp < rp){
+        tmp = nums[lp];
+        nums[lp] = nums[rp];
+        nums[rp] = tmp;
+        lp++;
+        rp--;
+    }
+};
+var rotate = function(nums, k) {
+    k = k%nums.length;
+    reverse(nums, 0, nums.length-1);
+    reverse(nums, 0, k-1);
+    reverse(nums, k, nums.length-1)
+};
 /**
  * test
  */
+// let nums = [];
 // let nums = [1,2]
 // let nums = [1,2,3,4,5,6,7]
 // let nums = [1]
 // let nums = [-1]
 // let nums = [1,2,3];
-// rotate(nums, 4);
+// rotate(nums, 1);
 // console.log(nums);
