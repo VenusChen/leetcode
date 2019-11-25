@@ -12,32 +12,55 @@
 /**
  * @param {string} str
  * @return {number}
- * charAt 与 str[i]基本一样，但是对于空字符串，charAt返回'',str[i]返回undefined
- * charCodeAt返回字符的ASCII码，对于数字，需要码-48==数字
+ * Tips
+ * 1. charAt 与 str[i]基本一样，但是对于空字符串，charAt返回'',str[i]返回undefined
+ * 2. charCodeAt返回字符的ASCII码，对于数字，需要码-48==数字
+ * 3. 记得考虑溢出
+ * 4. 注意返回值正负
+ * 5. 需要记录正负号个数。如果多个符号相接，需要返回0
+ * 6. '+0 123' 中间夹杂空格，说明代码需要两段循环，否则不好判断字符串中间夹杂的空格
  */
 var myAtoi = function(str) {
+    let res = 0;
+    let positive = true;
+    let cnt = 0; //记录符号个数
     let i = 0;
-    let negative = false;
-    let res = [];
-    //1. 过滤掉字符串前端的空格
-    while (str[i]===' '){
+    while (str.charAt(i) === ' ') {
         i++;
     }
-    //2. 当前i位置是第一个非空格字符，如果不是数字，返回
-    if((str.charCodeAt(i)>9 || str.charCodeAt(i)<0) && str[i] !== '-') {
-        return 0;
+    //判断正负和数值提取要拆开，否则，0-1这种，数字符号混合的判断不正确
+    if(str.charAt(i) === '-' ) {
+        positive = false;
     }
-    //3. 首个字符如果是正负号，标记
-    if(str[i] === '-') {
-        negative = true;
+    if(str.charAt(i) === '-'  || str.charAt(i) === '+') {
         i++;
     }
-    //4. 选取连续数字,遇到非数字退出
-    while ((str.charCodeAt(i)>=0 && str.charCodeAt(i)<=9)) {
-        res.push(str.charCodeAt(i)-48);
+    //这里for i用旧值，不能再次赋值i=0
+    for(; i < str.length; i++) {
+        if(str.charCodeAt(i)-48>9 || str.charCodeAt(i)-48<0) {
+            break;
+        }
+        //要注意判断，当前值是否即将溢出
+        if(res*10+(str.charCodeAt(i)-48)>=2147483647 && positive) {
+            res = 2147483647;
+        }
+        else if(res*10+(str.charCodeAt(i)-48)>=2147483648 && !positive) {
+            res = 2147483648;
+        }
+        else {
+            res = res*10+str.charCodeAt(i)-48;
+        }
     }
+
+    return positive?res:0-res;
 };
 
-// console.log(myAtoi());
-console.log('1'.charCodeAt(0));
-console.log(' '.charCodeAt(0));
+console.log(myAtoi('42'));
+console.log(myAtoi('  -42'));
+console.log(myAtoi('4193 with words'));
+console.log(myAtoi('words and 987'));
+console.log(myAtoi('-91283472332'));
+console.log(myAtoi('-+10'));
+console.log(myAtoi('+0 123'));
+console.log(myAtoi("2147483648"));
+console.log(myAtoi("0-1"));
