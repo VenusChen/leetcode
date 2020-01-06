@@ -73,6 +73,18 @@ var reverseWords = function(str) {
     return str.trim().split(' ').filter(e => !!e).reverse().join(' ');
 };
 
+
+//one week after
+/**
+ * 1. 开头结尾不能有空格
+ * 2. 去掉重复空格
+ * @param {string} s
+ * @return {string}
+ */
+var reverseWords = function(str) {
+
+};
+
 console.log(reverseWords(' hello world!  '));
 console.log(reverseWords('a good   example'));
 console.log(reverseWords('the sky is blue'));
