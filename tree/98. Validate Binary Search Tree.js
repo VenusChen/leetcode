@@ -61,8 +61,6 @@ function TreeNode(val) {
  * @param last
  * @return {*}
  */
-
-
 var dfs = (root, last)=> {
     if(root == null) {
         console.log('0. root == null');
@@ -85,3 +83,4 @@ var isValidBST = function(root) {
     var last = {val:-Infinity};
     return dfs(root, last);
 };
+
