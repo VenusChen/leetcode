@@ -6,7 +6,8 @@
  * }
  */
 /**
- * 注意！！传入参数是 [] 0情况下，应该返回false。不特殊处理，返回true不对。
+ * 递归方法
+ * ！！注意 传入参数是 [] 0情况下，应该返回false。不特殊处理，返回true不对。
  * @param {TreeNode} root
  * @param {number} sum
  * @return {boolean}
