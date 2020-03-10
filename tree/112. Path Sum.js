@@ -61,3 +61,10 @@ var hasPathSum = function(root, sum) {
 };
 
 console.log(hasPathSum({val:1, left:{val:2, left:null, right:null},  right:null}, 1));
+
+/**
+ * 数组转化成二叉树结构！
+ */
+var list2Tree = ()=> {
+
+};
