@@ -13,7 +13,7 @@ var threeSum = function(nums) {
     for(let i = 0; i+2 < nums.length; i++) {
         for(let j = i+1; j+1 < nums.length; j++) {
             for(let k = j+1; k < nums.length; k++) {
-                if ( /*i > 0 &&*/ nums[i] === nums[ i - 1] ) continue;
+                if ( nums[i] === nums[ i - 1] ) continue;
                 if ( j > i + 1 && nums[j] === nums[ j - 1] ) continue;
                 if ( k > j + 1 && nums[k] === nums[ k - 1] ) continue;
                 if(nums[i]+nums[j]+nums[k] === 0) {
