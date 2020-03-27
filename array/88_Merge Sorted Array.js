@@ -53,3 +53,37 @@ let nums1 = [1,2,3,0,0,0];
 let nums2 = [2,5,6];
 merge(nums1, 3, nums2, 3);
 console.log(nums1);
+
+
+var merge = function(nums1, m, nums2, n) {
+    let merge = [];
+    let i = 0;
+    let j = 0;
+    for(let k = 0; k < m+n; k++) {
+        if(i >= m && j < n) { //nums1遍历完，push nums2
+            merge.push(nums2[j]);
+            j++;
+        }
+        else if(i < m && j >= n) { //nums2遍历完，push nums1
+            merge.push(nums1[i]);
+            i++;
+        }
+        else if(nums1[i] <= nums2[j]) {
+            merge.push(nums1[i]);
+            i++;
+        }
+        else {
+            merge.push(nums2[j]);
+            j++;
+        }
+    }
+
+    for(let k = 0; k < nums1.length; k++) {
+        if(k < merge.length) {
+            nums1[k] = merge[k];
+        }
+        else {
+            nums1[k] = null;
+        }
+    }
+};
