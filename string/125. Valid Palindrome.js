@@ -34,3 +34,11 @@ var isPalindrome = function(s) {
 };
 
 console.log(isPalindrome('A man, a plan, a canal: Panama'));
+
+//利用js一些工具方法，简便代码书写
+var isPalindrome = function(s) {
+    var strippedString = s.replace(/\W/g, '');
+    var reversedString = strippedString.split('').reverse().join('');
+
+    return strippedString.toLowerCase() == reversedString.toLowerCase();
+};
