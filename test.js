@@ -1,44 +1,55 @@
+function a() {
 
-// var bar = {
-//     myName:"time.geekbang.com",
-//     printName: function () {
-//         console.log(this.myName)
-//     }
-// }
-// function foo() {
-//     let myName = "极客时间"
-//     return bar.printName
-// }
-// let myName = "极客邦"
-// //1
-// let _printName = foo()
-// _printName()
-//
-// //2
-// bar.printName()
-//
-// //3
-// foo()();
+    var arr = new Array(1000000);
 
+    for(var i = 0; i < arr.length;i ++) {
 
-// let bar = {
-//     myName : "极客邦",
-//     test1 : 1
-// }
-// function foo(){
-//     this.myName = "极客时间"
-// }
-// foo.call(bar)
-// console.log(bar)
-// console.log(myName)
+        arr[i] = i;
 
-
-var myObj = {
-    name : "极客时间",
-    showThis: function(){
-        console.log(this)
-        function bar(){console.log(this)}
-        bar()
     }
+
+
+
+    var start1 = new Date().getTime();
+
+    for(var i = 0; i < arr.length;i ++) {
+
+        arr[i] = i+1;
+
+    }
+
+    var stop1 = new Date().getTime();
+
+    console.info(stop1-start1);
+
+
+
+    var start2 = new Date().getTime();
+
+    arr.forEach(function(value,index,array) {
+
+        arr[i] = i+1;
+
+    });
+
+    var stop2 = new Date().getTime();
+
+    console.info(stop2-start2);
+
+
+
+    var start3 = new Date().getTime();
+
+    arr.map(function(index,value,array) {
+
+        arr[i] = i+1;
+
+    });
+
+    var stop3 = new Date().getTime();
+
+    console.info(stop3-start3);
+
 }
-myObj.showThis()
+
+a();
